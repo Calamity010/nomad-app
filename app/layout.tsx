@@ -20,7 +20,7 @@ const myriad = localFont({
 });
 
 const obviously = localFont({
-  src: "../public/fonts/ObviouslyVariable.ttf",
+  src: "../public/Fonts/ObviouslyVariable.ttf",
   variable: "--font-obviously",
   display: "swap",
 });
