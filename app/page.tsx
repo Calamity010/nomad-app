@@ -12,8 +12,8 @@ const MarqueeContent = () => (
   <>
     {[1, 2, 3, 4].map((i) => (
       <div key={i} className="flex items-center gap-[2vw] pr-[4vw] whitespace-nowrap shrink-0">
-        <span className="font-light tracking-tight">to the</span>
-        <span className="font-bold">College Of Creative</span>
+        <span className="font-light tracking-tight">Welcome to the</span>
+        <span className="font-bold">College Of Creative Intelligence</span>
       </div>
     ))}
   </>
@@ -32,7 +32,7 @@ const IdeaItems = () => (
         <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl bg-black">
           <Image src={item.src} width={256} height={256} alt={item.label} className="w-full h-full object-cover" />
         </div>
-        <div className="text-[#e6007a] text-sm font-black uppercase tracking-wider">{item.label}</div>
+        <div className="text-[#ec008c] text-sm font-black uppercase tracking-wider">{item.label}</div>
       </div>
     ))}
   </>
@@ -41,6 +41,28 @@ const IdeaItems = () => (
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const statsData = [
+    { value: "14+", label: "Years Creative\nLegacy" },
+    { value: "200+", label: "International\nAwards" },
+    { value: "100%", label: "Placement,\nEvery Single Year" },
+    { value: "57", label: "Global Agency\nPartnerships" }
+  ];
+  const [currentStatIndex, setCurrentStatIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStatIndex((prev) => (prev + 1) % statsData.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    gsap.fromTo(".stat-text-animated",
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }
+    );
+  }, [currentStatIndex]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -63,15 +85,15 @@ export default function Home() {
 
       // 1. Hero Animations (Initial Load)
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      
+
       // Hero Image Breathe
-      gsap.fromTo(".hero-image", 
-        { scale: 1.2 },
-        { scale: 1.1, duration: 4, ease: "power2.out" }
+      gsap.fromTo(".hero-image",
+        { scale: 1.05, transformOrigin: "center center" },
+        { scale: 1.0, duration: 4, ease: "power2.out" }
       );
 
       // Navbar Slide Down
-      tl.fromTo(".main-header", 
+      tl.fromTo(".main-header",
         { y: -100, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.2 },
         "-=3.5"
@@ -107,11 +129,19 @@ export default function Home() {
         }
       );
 
-      gsap.fromTo(".empowering-stat",
+      gsap.fromTo(".empowering-inner-image",
+        { scale: 1.6, transformOrigin: "center center" },
+        {
+          scale: 1.5, duration: 4, ease: "power2.out",
+          scrollTrigger: { trigger: ".empowering-section", start: "top 60%" }
+        }
+      );
+
+      gsap.fromTo([".empowering-stat-bg", ".empowering-stat-text"],
         { scale: 0.8, opacity: 0 },
         {
           scale: 1, opacity: 1, duration: 1, ease: "back.out(1.5)",
-          scrollTrigger: { trigger: ".empowering-stat", start: "top 80%" }
+          scrollTrigger: { trigger: ".empowering-section", start: "top 80%" }
         }
       );
 
@@ -166,10 +196,10 @@ export default function Home() {
 
       // 6. Footer Circles
       gsap.fromTo(".footer-circle",
-        { scale: 0.5, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
-          scale: 1, opacity: 1, stagger: 0.2, duration: 1, ease: "back.out(1.2)",
-          scrollTrigger: { trigger: ".footer-circles-section", start: "top 75%" }
+          y: 0, opacity: 1, stagger: 0.2, duration: 1.2, ease: "power3.out",
+          scrollTrigger: { trigger: ".footer-circles-section", start: "top 80%" }
         }
       );
 
@@ -195,88 +225,92 @@ export default function Home() {
       <main className="w-full relative min-h-screen flex flex-col shrink-0">
 
         {/* Hero Section with Header */}
-        <section className="relative w-full h-screen min-h-[700px] flex flex-col items-center justify-center overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+        <section className="relative w-full h-screen flex flex-col overflow-hidden bg-[#d1d1d1]">
+          {/* Background Image - Absolute Centering */}
+          <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center">
             <Image
               src="/hero-bg.jpg"
-              fill
+              width={1920}
+              height={1080}
               alt="Student sitting with laptop"
-              className="hero-image object-cover object-[50%_20%] md:object-[25%_20%] grayscale opacity-80 scale-110"
+              className="hero-image absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-auto md:w-auto h-[120vh] md:h-[200vh] min-w-[150vw] md:min-w-0 max-w-none grayscale opacity-100 object-cover"
               priority
             />
           </div>
 
-          {/* Header */}
-          <header className="main-header absolute top-0 left-0 w-full flex items-center justify-between px-6 md:px-12 py-4 md:py-6 z-50">
-            <div className="flex items-center gap-1 font-black text-3xl md:text-[42px] tracking-tighter cursor-pointer text-black relative z-50">
-              NoMAD<span className="w-4 h-4 md:w-7 md:h-7 bg-[#e6007a] rounded-full inline-block"></span>
+          {/* Header - Now sticky and part of the section flow */}
+          <header className="main-header sticky top-0 left-0 w-full flex items-center justify-between px-6 md:px-20 py-4 md:py-8 z-50 transition-all duration-300">
+            <div className="flex items-center gap-1 font-black text-3xl md:text-[48px] tracking-tighter cursor-pointer text-black relative z-50">
+              NoMAD<span className="w-5 h-5 md:w-8 md:h-8 bg-[#ec008c] rounded-full inline-block ml-1"></span>
             </div>
-            
+
             {/* Desktop Nav */}
-            <nav className="hidden xl:flex gap-8 text-xs font-bold tracking-widest uppercase text-black/80">
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">About Us</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Programs</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Admissions</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Infrastructure</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">News & Events</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Faculty</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Alumni</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Placement & Internship</span>
-              <span className="cursor-pointer hover:text-[#e6007a] transition-colors">Contact Us</span>
+            <nav className="hidden xl:flex gap-5 text-[11px] font-medium tracking-widest uppercase text-black/80">
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">About Us</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Programs</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Admissions</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Infrastructure</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">News & Events</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Faculty</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Alumni</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Placement & Internship</span>
+              <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Contact Us</span>
             </nav>
 
             {/* Mobile Hamburger Toggle */}
-            <button 
+            <button
               className="xl:hidden relative z-50 text-black p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
             </button>
-            
+
             {/* Mobile Menu Overlay */}
             <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out flex flex-col items-center justify-center gap-8 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} xl:hidden`}>
               <nav className="flex flex-col items-center gap-6 text-xl md:text-2xl font-black tracking-widest uppercase text-black">
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Us</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Programs</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Admissions</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Infrastructure</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>News & Events</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Faculty</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Alumni</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Placement & Internship</span>
-                <span className="cursor-pointer hover:text-[#e6007a] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Us</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Programs</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Admissions</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Infrastructure</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>News & Events</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Faculty</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Alumni</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Placement & Internship</span>
+                <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</span>
               </nav>
             </div>
           </header>
 
-          {/* Central Pink Circle */}
-          <div className="hero-pink-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[500px] md:h-[500px] bg-[#e6007a] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
+          {/* Hero Content Container - Centered in the remaining space */}
+          <div className="flex-1 flex flex-col items-center justify-center relative w-full">
+            {/* Central Pink Circle */}
+            <div className="hero-pink-circle absolute top-[45%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[450px] md:h-[450px] bg-[#d10074]/85 rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
 
-          {/* Main Title - Black Text (Background layer) */}
-          <div className="absolute z-20 w-full flex items-center pointer-events-none top-1/2 -translate-y-1/2 mt-0 md:-mt-8">
-            <div className="marquee-track flex text-[15vw] md:text-[9vw] leading-[0.8] text-black w-max font-[family-name:var(--font-myriad)]">
-              <MarqueeContent />
-            </div>
-          </div>
-
-          {/* Main Title - White Text (Foreground layer, clipped to pink circle) */}
-          <div
-            className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(110px_at_50%_50%)] md:[clip-path:circle(250px_at_50%_50%)]"
-          >
-            <div className="absolute w-full flex items-center top-1/2 -translate-y-1/2 mt-0 md:-mt-8">
-              <div className="marquee-track flex text-[15vw] md:text-[9vw] leading-[0.8] text-white w-max font-[family-name:var(--font-myriad)]">
+            {/* Main Title - Black Text (Background layer) */}
+            <div className="absolute z-20 w-full flex items-center pointer-events-none top-[45%] -translate-y-1/2 mt-0">
+              <div className="marquee-track flex text-[16vw] md:text-[7.5vw] leading-[0.8] text-black w-max">
                 <MarqueeContent />
+              </div>
+            </div>
+
+            {/* Main Title - White Text (Foreground layer, clipped to pink circle) */}
+            <div
+              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(140px_at_45%_45%)] md:[clip-path:circle(225px_at_45%_45%)]"
+            >
+              <div className="absolute w-full flex items-center top-[45%] -translate-y-1/2 mt-0">
+                <div className="marquee-track flex text-[16vw] md:text-[7.5vw] leading-[0.8] text-white w-max">
+                  <MarqueeContent />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Empowering Section */}
-        <section className="empowering-section relative mt-12 mb-20 w-full flex flex-col items-center overflow-hidden">
+        <section className="empowering-section relative w-full min-h-[100dvh] h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
           {/* Centered Title */}
           <div className="w-full max-w-[1400px] px-4 md:px-8">
-            <h2 className="text-[#e6007a] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center font-[family-name:var(--font-myriad)] leading-tight flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+            <h2 className="text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-tight flex flex-wrap justify-center gap-x-2 md:gap-x-4">
               <span className="overflow-hidden block"><span className="reveal-word inline-block">Empowering</span></span>
               <span className="overflow-hidden block"><span className="reveal-word inline-block">Creative</span></span>
               <span className="overflow-hidden block"><span className="reveal-word inline-block">Minds</span></span>
@@ -287,29 +321,32 @@ export default function Home() {
             {/* The Image Container */}
             <div className="empowering-image relative w-full md:w-auto flex flex-col md:block items-center">
               <Image
-                src="/empowering-creative-minds.jpg"
+                src="/empowering-creative-minds.png"
                 width={1200}
                 height={720}
                 alt="Students"
-                className="w-full md:w-auto h-auto max-h-[45vh] md:max-h-[65vh] object-contain object-bottom md:object-right-bottom grayscale px-4 md:px-0"
+                className="empowering-inner-image w-full md:w-auto h-auto max-h-[45vh] md:max-h-[65vh] object-contain object-bottom md:object-right-bottom grayscale px-4 md:px-0"
               />
 
-              {/* Info Block (Circle on desktop, Rectangle on mobile) */}
-              <div className="empowering-stat relative md:absolute mt-8 md:mt-0 md:top-1/2 md:-translate-y-1/2 md:-left-[300px] lg:-left-[350px] w-[90%] md:w-[450px] h-auto md:h-[450px] z-10 mx-auto shrink-0">
-                {/* Transparent Background Layer */}
-                <div className="absolute inset-0 bg-[#e6007a] md:bg-[#e6007a]/85 rounded-3xl md:rounded-full shadow-lg md:shadow-xl"></div>
+              {/* Info Block Wrapper - Handles layout and overlap via Grid, NOT animated to avoid stacking context issues */}
+              <div className="mt-8 md:mt-0 relative md:absolute md:top-1/2 md:-translate-y-1/2 md:-left-[500px] lg:-left-[450px] w-[90%] md:w-[450px] h-auto md:h-[450px] z-10 mx-auto shrink-0 grid">
+                
+                {/* Info Block Background (Animated) */}
+                <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#d10074]/85 mix-blend-multiply rounded-3xl md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
 
-                {/* Text Foreground Layer */}
-                <div className="relative md:absolute md:inset-0 z-10 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white h-full">
+                {/* Info Block Text Foreground Layer (Animated) */}
+                <div className="empowering-stat-text col-start-1 row-start-1 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white z-20">
                   <div className="relative md:absolute md:top-14 flex flex-col items-center leading-[1.1] tracking-tight mb-6 md:mb-0">
                     <div className="font-bold text-[10px] md:text-sm">MIAMI</div>
                     <div className="font-bold text-[10px] md:text-sm">AD</div>
                     <div className="font-bold text-[10px] md:text-sm">SCHOOL</div>
                     <div className="text-[6px] font-bold tracking-widest mt-1">MUM | BLR</div>
                   </div>
-                  <div className="text-[120px] md:text-[160px] font-black tracking-tighter leading-[0.8] mt-0 md:mt-12 mb-4 md:mb-4">300+</div>
-                  <div className="text-[14px] md:text-[22px] font-light leading-[1.2] tracking-tight">
-                    Students Placed Across<br />Top Global Companies
+                  <div className="stat-text-animated flex flex-col items-center justify-center">
+                    <div className="text-[120px] md:text-[160px] font-black tracking-tighter leading-[0.8] mt-0 md:mt-12 mb-4 md:mb-4">{statsData[currentStatIndex].value}</div>
+                    <div className="text-[14px] md:text-[22px] font-light leading-[1.2] tracking-tight whitespace-pre-line">
+                      {statsData[currentStatIndex].label}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -318,11 +355,11 @@ export default function Home() {
         </section>
 
         {/* Visionaries Section */}
-        <section className="visionaries-section px-8 my-20 w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left items-center">
-          <h2 className="text-[#e6007a] font-semibold text-[50px] md:text-[70px] leading-[0.9] tracking-tight">
+        <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
+          <h2 className="text-[#ec008c] font-semibold text-[60px] md:text-[90px] leading-[0.9] tracking-tight shrink-0">
             Crafting<br />Tomorrow's<br />Visionaries
           </h2>
-          <div className="text-[24px] md:text-[38px] font-medium leading-tight text-black/80 flex flex-col">
+          <div className="text-[32px] md:text-[48px] font-medium leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
             <div className="overflow-hidden"><div className="reveal-line">We cultivate fearless creative</div></div>
             <div className="overflow-hidden"><div className="reveal-line">talent that transforms the way</div></div>
             <div className="overflow-hidden"><div className="reveal-line">the world engages with brands,</div></div>
@@ -351,7 +388,7 @@ export default function Home() {
 
               {/* Text Foreground Layer */}
               <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center px-6 py-12 md:px-20 md:py-16 lg:px-[90px] lg:py-20 text-white h-full">
-                <h3 className="font-[family-name:var(--font-myriad)] text-[36px] md:text-5xl lg:text-[52px] font-black mb-3 md:mb-5 tracking-tighter uppercase leading-[0.9] md:leading-none text-center">OUR PROGRAMS</h3>
+                <h3 className="text-[36px] md:text-5xl lg:text-[52px] font-black mb-3 md:mb-5 tracking-tighter uppercase leading-[0.9] md:leading-none text-center">OUR PROGRAMS</h3>
                 <p className="text-[13px] md:text-[14px] lg:text-[16px] font-medium leading-relaxed mb-5 md:mb-6 text-white/95 text-center md:text-left px-2 md:px-0">
                   We cultivate creators through hands-on experiences,
                   offering real-world creative learning pathways with
@@ -378,7 +415,7 @@ export default function Home() {
 
         {/* Where Ideas Never Settle */}
         <section className="relative my-20 w-full overflow-hidden text-center ideas-section">
-          <h2 className="text-[#e6007a] font-black text-5xl mb-16 uppercase tracking-wide">
+          <h2 className="text-[#ec008c] font-black text-5xl mb-16 uppercase tracking-wide">
             Where Ideas Never Settle
           </h2>
 
@@ -392,7 +429,7 @@ export default function Home() {
 
         {/* Partners */}
         <section className="partners-section px-8 my-20 w-full max-w-[1400px] mx-auto text-center">
-          <h2 className="text-[#e6007a] font-black text-4xl mb-16">Our Best Are Working With The Best</h2>
+          <h2 className="text-[#ec008c] font-black text-4xl mb-16">Our Best Are Working With The Best</h2>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-12 gap-y-10 px-0 md:px-4 text-black font-bold">
             <span className="partner-logo font-black text-4xl md:text-[44px] tracking-tighter opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">dentsu</span>
@@ -406,12 +443,12 @@ export default function Home() {
         </section>
 
         {/* Footer Circles */}
-        <section className="footer-circles-section my-12 md:my-20 w-full flex justify-center overflow-hidden">
+        <section className="footer-circles-section py-12 md:py-20 w-full flex justify-center overflow-hidden">
           <div className="flex flex-col lg:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-16 relative w-full max-w-[1400px] mx-auto px-4">
 
             {/* Left Circle */}
-            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#e6007a] flex flex-col items-center justify-center text-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
-              <div className="text-[42px] md:text-[64px] font-[family-name:var(--font-myriad)] font-black leading-[0.9] tracking-tighter">
+            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
+              <div className="text-[42px] md:text-[64px] font-black leading-[0.9] tracking-tighter">
                 In The<br />Heart Of<br />Mumbai
               </div>
               <div className="text-[11px] md:text-sm mt-3 md:mt-4 tracking-wide font-bold">(Upper BKC)</div>
@@ -423,7 +460,7 @@ export default function Home() {
             </div>
 
             {/* Right Circle */}
-            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#e6007a] flex flex-col justify-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] px-10 md:px-16 relative hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
+            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#ec008c] flex flex-col justify-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] px-10 md:px-16 relative hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
               <div className="text-[12px] md:text-[17px] font-medium leading-relaxed relative text-center">
                 <span className="footer-quote absolute -top-4 md:-top-6 -left-1 md:-left-2 text-[30px] md:text-[40px] leading-none opacity-50 origin-center inline-block">❝</span>
                 Just like the bustling streets of Mumbai, NoMAD is a melting pot of diverse ideas and cultures, constantly reminding me that here, art and design are not just subjects, but powerful agents of transformation.
@@ -438,40 +475,86 @@ export default function Home() {
         </section>
 
         {/* Black Footer */}
-        <footer className="bg-black text-white px-16 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 text-sm uppercase tracking-wider mt-auto w-full">
-          <div>
-            <div className="font-bold text-[#e6007a] mb-6 text-base">College of Creative Intelligence</div>
-            <div className="opacity-70 leading-loose">
-              Ground Floor, A Wing, HDIL Kaledonia,<br />
-              Sahar Road, Andheri East,<br />
-              Mumbai - 400069
+        <footer className="bg-black text-white px-8 md:px-16 py-16 md:py-20 flex flex-col mt-auto w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-10 md:gap-8 lg:gap-12 w-full max-w-[1600px] mx-auto text-[11px] md:text-[13px] tracking-wide leading-relaxed">
+            
+            {/* Col 1 */}
+            <div className="lg:col-span-2 flex flex-col gap-6 text-white/80 pr-0 lg:pr-8">
+              <div>
+                <span className="font-bold text-white">Campus:</span> Kohinoor City, Kirol Road, Off LBS Marg,<br />
+                Upper BKC, Mumbai – 400070, Maharashtra
+              </div>
+              <div>
+                <span className="font-bold text-white">Admissions Office:</span> Rose Cottage Complex,<br />
+                Dr SS Rao Marg, Next to Amit Industrial Estate,<br />
+                Parel East, Mumbai - 400012, Maharashtra
+              </div>
+              <div>
+                E: hello@nomadcollege.in
+              </div>
+              <div>
+                www.nomadcollege.in
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="font-bold mb-6 text-base">Connect</div>
-            <div className="opacity-70 leading-loose">
-              +91 98200 98200<br />
-              info@nomad.edu.in
+
+            {/* Col 2 */}
+            <div className="flex flex-col gap-6">
+              <div className="font-bold uppercase text-white mb-2 tracking-wider">CONTACT</div>
+              <div className="text-white/80 leading-snug">
+                <div className="text-white mb-1">Mumbai</div>
+                +91 98195 43130 /<br />
+                +91 98195 43376
+              </div>
+              <div className="text-white/80 leading-snug">
+                <div className="text-white mb-1">Bangalore</div>
+                +91 98195 43375 /<br />
+                +91 98336 21147
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="font-bold mb-6 text-base">Social</div>
-            <div className="opacity-70 leading-loose cursor-pointer space-y-2">
-              <div className="hover:text-[#e6007a] transition-colors">Instagram</div>
-              <div className="hover:text-[#e6007a] transition-colors">LinkedIn</div>
-              <div className="hover:text-[#e6007a] transition-colors">Facebook</div>
+
+            {/* Col 3 */}
+            <div className="flex flex-col gap-2 text-white/80">
+              <div className="font-bold uppercase text-white mb-4 tracking-wider">STUDY</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Undergraduate Program</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Postgraduate Program</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Curriculum</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Global Exchange</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Internships</div>
             </div>
-          </div>
-          <div>
-            <div className="font-bold mb-6 text-base">Legal</div>
-            <div className="opacity-70 leading-loose cursor-pointer space-y-2">
-              <div className="hover:text-[#e6007a] transition-colors">Terms & Conditions</div>
-              <div className="hover:text-[#e6007a] transition-colors">Privacy Policy</div>
+
+            {/* Col 4 */}
+            <div className="flex flex-col gap-2 text-white/80">
+              <div className="font-bold uppercase text-white mb-4 tracking-wider">WHY NOMAD</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Creative Intelligence</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Real Client Work</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Industry Mentors</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Global Exposure</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Portfolio First</div>
             </div>
+
+            {/* Col 5 */}
+            <div className="flex flex-col gap-2 text-white/80">
+              <div className="font-bold uppercase text-white mb-4 tracking-wider">EXPLORE</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Student Work</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Alumni</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Faculty</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Campus Life</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Admissions</div>
+            </div>
+
+            {/* Col 6 */}
+            <div className="flex flex-col gap-2 text-white/80">
+              <div className="font-bold uppercase text-white mb-4 tracking-wider">QUICK LINKS</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Apply Now</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Download Brochure</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Visit Campus</div>
+              <div className="cursor-pointer hover:text-[#ec008c] transition-colors">Contact Us</div>
+            </div>
+
           </div>
 
-          <div className="col-span-1 md:col-span-4 text-center mt-12 pt-12 border-t border-white/10 opacity-50 font-medium tracking-widest">
-            © 2026 NOMAD EDUCATION PVT. LTD.
+          <div className="w-full text-center mt-20 pt-10 text-[20px] md:text-[28px] lg:text-[34px] font-medium tracking-tight">
+            OPEN EDUCATION PVT. LTD.
           </div>
         </footer>
 
