@@ -28,11 +28,11 @@ const IdeaItems = () => (
       { src: "/idea-4.png", label: "Hand Lettering" },
       { src: "/idea-5.png", label: "Print Advertisement" }
     ].map((item, idx) => (
-      <div key={idx} className="flex flex-col items-center gap-6 px-4 md:px-8 shrink-0">
-        <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl bg-black">
-          <Image src={item.src} width={256} height={256} alt={item.label} className="w-full h-full object-cover" />
+      <div key={idx} className="flex flex-col items-center gap-6 px-4 md:px-10 shrink-0">
+        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-black">
+          <Image src={item.src} width={320} height={320} alt={item.label} className="w-full h-full object-cover" />
         </div>
-        <div className="text-[#ec008c] text-sm font-black uppercase tracking-wider">{item.label}</div>
+        <div className="text-[#ec008c] text-[16px] md:text-[20px] font-black uppercase tracking-wider">{item.label}</div>
       </div>
     ))}
   </>
@@ -40,9 +40,9 @@ const IdeaItems = () => (
 
 const PartnerItems = () => (
   <>
-    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-      <div key={i} className="flex items-center justify-center px-10 md:px-16 shrink-0">
-        <Image src={`/logo-${i}.png`} width={220} height={100} alt={`Partner ${i}`} className="h-14 md:h-[80px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((i) => (
+      <div key={i} className="flex items-center justify-center px-6 md:px-10 shrink-0">
+        <Image src={`/logo-${i}.png`} width={300} height={120} alt={`Partner ${i}`} className="h-14 md:h-[90px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
       </div>
     ))}
   </>
@@ -252,8 +252,8 @@ export default function Home() {
 
           {/* Header - Now sticky and part of the section flow */}
           <header className="main-header sticky top-0 left-0 w-full flex items-center justify-between px-6 md:px-20 py-4 md:py-8 z-50 transition-all duration-300">
-            <div className="flex items-center gap-1 font-black text-3xl md:text-[48px] tracking-tighter cursor-pointer text-black relative z-50">
-              NoMAD<span className="w-5 h-5 md:w-8 md:h-8 bg-[#ec008c] rounded-full inline-block ml-1"></span>
+            <div className="flex items-center cursor-pointer relative z-50">
+              <Image src="/nomad-logo.png" width={200} height={60} alt="NoMAD Logo" className="h-8 md:h-12 w-auto object-contain" priority />
             </div>
 
             {/* Desktop Nav */}
@@ -296,7 +296,7 @@ export default function Home() {
           {/* Hero Content Container - Centered in the remaining space */}
           <div className="flex-1 flex flex-col items-center justify-center relative w-full">
             {/* Central Pink Circle */}
-            <div className="hero-pink-circle absolute top-[45%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[450px] md:h-[450px] bg-[#d10074]/85 rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
+            <div className="hero-pink-circle absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[520px] md:h-[520px] bg-[#ec008c] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
 
             {/* Main Title - Black Text (Background layer) */}
             <div className="absolute z-20 w-full flex items-center pointer-events-none top-[45%] -translate-y-1/2 mt-0">
@@ -307,7 +307,7 @@ export default function Home() {
 
             {/* Main Title - White Text (Foreground layer, clipped to pink circle) */}
             <div
-              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(140px_at_45%_45%)] md:[clip-path:circle(225px_at_45%_45%)]"
+              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(150px_at_45%_40%)] md:[clip-path:circle(260px_at_45%_40%)]"
             >
               <div className="absolute w-full flex items-center top-[45%] -translate-y-1/2 mt-0">
                 <div className="marquee-track flex text-[16vw] md:text-[7.5vw] leading-[0.8] text-white w-max">
@@ -316,16 +316,21 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Hero Bottom Right Logo */}
+          <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-40 pointer-events-none">
+            <Image src="/hero-bottom-right-logo.png" width={200} height={200} alt="Hero Badge" className="w-24 h-24 md:w-40 md:h-40 object-contain" priority />
+          </div>
         </section>
 
         {/* Empowering Section */}
-        <section className="empowering-section relative w-full min-h-[100dvh] h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
+        <section className="empowering-section relative w-full flex flex-col items-center justify-center overflow-hidden pt-0 pb-12 md:pb-16">
           {/* Centered Title */}
           <div className="w-full max-w-[1400px] px-4 md:px-8">
-            <h2 className="text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-tight flex flex-wrap justify-center gap-x-2 md:gap-x-4">
-              <span className="overflow-hidden block"><span className="reveal-word inline-block">Empowering</span></span>
-              <span className="overflow-hidden block"><span className="reveal-word inline-block">Creative</span></span>
-              <span className="overflow-hidden block"><span className="reveal-word inline-block">Minds</span></span>
+            <h2 className="text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-[1.2] flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+              <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Empowering</span></span>
+              <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Creative</span></span>
+              <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Minds</span></span>
             </h2>
           </div>
 
@@ -341,22 +346,22 @@ export default function Home() {
               />
 
               {/* Info Block Wrapper - Handles layout and overlap via Grid, NOT animated to avoid stacking context issues */}
-              <div className="mt-8 md:mt-0 relative md:absolute md:top-1/2 md:-translate-y-1/2 md:-left-[500px] lg:-left-[450px] w-[90%] md:w-[450px] h-auto md:h-[450px] z-10 mx-auto shrink-0 grid">
+              <div className="mt-8 md:mt-0 relative md:absolute md:top-1/2 md:-translate-y-1/2 md:-left-[550px] lg:-left-[500px] w-[90%] md:w-[500px] h-[350px] md:h-[500px] z-10 mx-auto shrink-0 grid">
                 
                 {/* Info Block Background (Animated) */}
-                <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#d10074]/85 mix-blend-multiply rounded-3xl md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
+                <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
 
                 {/* Info Block Text Foreground Layer (Animated) */}
                 <div className="empowering-stat-text col-start-1 row-start-1 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white z-20">
-                  <div className="relative md:absolute md:top-14 flex flex-col items-center leading-[1.1] tracking-tight mb-6 md:mb-0">
-                    <div className="font-bold text-[10px] md:text-sm">MIAMI</div>
-                    <div className="font-bold text-[10px] md:text-sm">AD</div>
-                    <div className="font-bold text-[10px] md:text-sm">SCHOOL</div>
-                    <div className="text-[6px] font-bold tracking-widest mt-1">MUM | BLR</div>
+                  <div className="relative md:absolute md:top-16 flex flex-col items-center leading-[1.1] tracking-tight mb-6 md:mb-0">
+                    <div className="font-bold text-[12px] md:text-[18px]">MIAMI</div>
+                    <div className="font-bold text-[12px] md:text-[18px]">AD</div>
+                    <div className="font-bold text-[12px] md:text-[18px]">SCHOOL</div>
+                    <div className="text-[8px] md:text-[10px] font-bold tracking-widest mt-1.5">MUM | BLR</div>
                   </div>
                   <div className="stat-text-animated flex flex-col items-center justify-center">
-                    <div className="text-[120px] md:text-[160px] font-black tracking-tighter leading-[0.8] mt-0 md:mt-12 mb-4 md:mb-4">{statsData[currentStatIndex].value}</div>
-                    <div className="text-[14px] md:text-[22px] font-light leading-[1.2] tracking-tight whitespace-pre-line">
+                    <div className="text-[120px] md:text-[160px] font-black tracking-tighter leading-[0.8] mt-0 md:mt-12 mb-8 md:mb-12">{statsData[currentStatIndex].value}</div>
+                    <div className="text-[16px] md:text-[28px] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
                       {statsData[currentStatIndex].label}
                     </div>
                   </div>
@@ -368,35 +373,35 @@ export default function Home() {
 
         {/* Visionaries Section */}
         <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
-          <h2 className="text-[#ec008c] font-semibold text-[60px] md:text-[90px] leading-[0.9] tracking-tight shrink-0">
+          <h2 className="text-[#ec008c] font-semibold text-[70px] md:text-[110px] leading-[0.9] tracking-tight shrink-0">
             Crafting<br />Tomorrow's<br />Visionaries
           </h2>
-          <div className="text-[32px] md:text-[48px] font-medium leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
-            <div className="overflow-hidden"><div className="reveal-line">We cultivate fearless creative</div></div>
-            <div className="overflow-hidden"><div className="reveal-line">talent that transforms the way</div></div>
-            <div className="overflow-hidden"><div className="reveal-line">the world engages with brands,</div></div>
-            <div className="overflow-hidden"><div className="reveal-line">stories, and ideas.</div></div>
+          <div className="text-[38px] md:text-[56px] font-medium leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
+            <div className="overflow-hidden pb-1"><div className="reveal-line">We cultivate fearless creative</div></div>
+            <div className="overflow-hidden pb-1"><div className="reveal-line">talent that transforms the way</div></div>
+            <div className="overflow-hidden pb-1"><div className="reveal-line">the world engages with brands,</div></div>
+            <div className="overflow-hidden pb-1"><div className="reveal-line">stories, and ideas.</div></div>
           </div>
         </section>
 
         {/* Our Programs */}
         <section className="programs-section relative w-full bg-[#efefef] py-12 md:py-0 overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-[auto] md:min-h-[90vh]">
           {/* Image Container */}
-          <div className="programs-image relative md:absolute md:left-0 md:bottom-0 w-full md:w-[75%] lg:w-[65%] h-[40vh] md:h-full flex justify-center md:justify-start items-end z-0">
+          <div className="programs-image relative md:absolute md:left-0 md:top-0 w-full md:w-[65%] lg:w-[55%] h-[50vh] md:h-full flex justify-center md:justify-start items-start overflow-hidden z-0">
             <Image
               src="/programs.jpg"
               width={1200}
               height={900}
               alt="Programs"
-              className="w-full md:w-auto h-full max-h-[40vh] md:max-h-[90vh] object-contain object-bottom md:object-left-bottom grayscale opacity-90"
+              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90"
             />
           </div>
 
           {/* Info Block */}
           <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex justify-center md:justify-end items-center h-auto md:h-[90vh] mt-8 md:mt-0 py-8 md:py-0">
-            <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-12 lg:mr-24">
+            <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-16 lg:mr-32">
               {/* Dark Pink Transparent Background Layer */}
-              <div className="absolute inset-0 bg-[#c40062] md:bg-[#c40062]/90 rounded-3xl md:rounded-full shadow-lg md:shadow-2xl"></div>
+              <div className="absolute inset-0 bg-[#ec008c]/80 rounded-3xl md:rounded-full shadow-lg md:shadow-2xl"></div>
 
               {/* Text Foreground Layer */}
               <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center px-6 py-12 md:px-20 md:py-16 lg:px-[90px] lg:py-20 text-white h-full">
@@ -427,7 +432,7 @@ export default function Home() {
 
         {/* Where Ideas Never Settle */}
         <section className="relative my-20 w-full overflow-hidden text-center ideas-section">
-          <h2 className="text-[#ec008c] font-black text-5xl mb-16 uppercase tracking-wide">
+          <h2 className="text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 uppercase tracking-wide">
             Where Ideas Never Settle
           </h2>
 
@@ -441,7 +446,7 @@ export default function Home() {
 
         {/* Partners */}
         <section className="partners-section my-20 w-full overflow-hidden text-center">
-          <h2 className="text-[#ec008c] font-black text-4xl mb-16">Our Best Are Working With The Best</h2>
+          <h2 className="text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 lowercase tracking-wide">Our Best Are Working With The Best</h2>
 
           <div className="w-full relative py-8">
             <div className="partners-track flex items-center w-max">
@@ -455,10 +460,10 @@ export default function Home() {
 
         {/* Footer Circles */}
         <section className="footer-circles-section py-12 md:py-20 w-full flex justify-center overflow-hidden">
-          <div className="flex flex-col lg:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-16 relative w-full max-w-[1400px] mx-auto px-4">
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-8 relative w-full max-w-[1400px] mx-auto px-4">
 
             {/* Left Circle */}
-            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
+            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
               <div className="text-[42px] md:text-[64px] font-black leading-[0.9] tracking-tighter">
                 In The<br />Heart Of<br />Mumbai
               </div>
@@ -466,12 +471,12 @@ export default function Home() {
             </div>
 
             {/* Middle Circle */}
-            <div className="footer-circle w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden shadow-2xl relative shrink-0 z-20 my-6 lg:my-0">
+            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full overflow-hidden relative shrink-0 z-20 my-6 lg:my-0">
               <Image src="/mumbai.jpg" width={450} height={450} alt="Mumbai City View" className="w-full h-full object-cover grayscale" />
             </div>
 
             {/* Right Circle */}
-            <div className="footer-circle w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full bg-[#ec008c] flex flex-col justify-center text-white shadow-[0_0_40px_rgba(230,0,122,0.3)] px-10 md:px-16 relative hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
+            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#ec008c] flex flex-col justify-center text-white px-10 md:px-16 relative hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
               <div className="text-[12px] md:text-[17px] font-medium leading-relaxed relative text-center">
                 <span className="footer-quote absolute -top-4 md:-top-6 -left-1 md:-left-2 text-[30px] md:text-[40px] leading-none opacity-50 origin-center inline-block">❝</span>
                 Just like the bustling streets of Mumbai, NoMAD is a melting pot of diverse ideas and cultures, constantly reminding me that here, art and design are not just subjects, but powerful agents of transformation.
