@@ -196,7 +196,7 @@ export default function Home() {
       );
 
       // 5. Partners / Logos
-      gsap.fromTo(".partners-track", 
+      gsap.fromTo(".partners-track",
         { xPercent: -50 },
         {
           xPercent: 0,
@@ -327,7 +327,7 @@ export default function Home() {
         <section className="empowering-section relative w-full flex flex-col items-center justify-center overflow-hidden pt-0 pb-12 md:pb-16">
           {/* Centered Title */}
           <div className="w-full max-w-[1400px] px-4 md:px-8">
-            <h2 className="text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-[1.2] flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+            <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-[1.2] flex flex-wrap justify-center gap-x-2 md:gap-x-4">
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Empowering</span></span>
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Creative</span></span>
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Minds</span></span>
@@ -347,7 +347,7 @@ export default function Home() {
 
               {/* Info Block Wrapper - Handles layout and overlap via Grid, NOT animated to avoid stacking context issues */}
               <div className="mt-8 md:mt-0 relative md:absolute md:top-1/2 md:-translate-y-1/2 md:-left-[550px] lg:-left-[500px] w-[90%] md:w-[500px] h-[350px] md:h-[500px] z-10 mx-auto shrink-0 grid">
-                
+
                 {/* Info Block Background (Animated) */}
                 <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
 
@@ -373,7 +373,7 @@ export default function Home() {
 
         {/* Visionaries Section */}
         <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
-          <h2 className="text-[#ec008c] font-semibold text-[70px] md:text-[110px] leading-[0.9] tracking-tight shrink-0">
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-semibold text-[70px] md:text-[110px] leading-[0.9] tracking-tight shrink-0">
             Crafting<br />Tomorrow's<br />Visionaries
           </h2>
           <div className="text-[38px] md:text-[56px] font-medium leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
@@ -387,19 +387,19 @@ export default function Home() {
         {/* Our Programs */}
         <section className="programs-section relative w-full bg-[#efefef] py-12 md:py-0 overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-[auto] md:min-h-[90vh]">
           {/* Image Container */}
-          <div className="programs-image relative md:absolute md:left-0 md:top-0 w-full md:w-[65%] lg:w-[55%] h-[50vh] md:h-full flex justify-center md:justify-start items-start overflow-hidden z-0">
+          <div className="programs-image relative md:absolute md:left-5 lg:left-10 md:bottom-0 w-full md:w-[75%] lg:w-[65%] h-[50vh] md:h-[80vh] flex justify-center md:justify-start items-end overflow-hidden z-0">
             <Image
-              src="/programs.jpg"
+              src="/programs.png"
               width={1200}
               height={900}
               alt="Programs"
-              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90"
+              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90 scale-110 -translate-y-4 md:-translate-y-12 origin-top"
             />
           </div>
 
           {/* Info Block */}
           <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex justify-center md:justify-end items-center h-auto md:h-[90vh] mt-8 md:mt-0 py-8 md:py-0">
-            <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-16 lg:mr-32">
+            <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-8 lg:mr-16">
               {/* Dark Pink Transparent Background Layer */}
               <div className="absolute inset-0 bg-[#ec008c]/80 rounded-3xl md:rounded-full shadow-lg md:shadow-2xl"></div>
 
@@ -432,7 +432,7 @@ export default function Home() {
 
         {/* Where Ideas Never Settle */}
         <section className="relative my-20 w-full overflow-hidden text-center ideas-section">
-          <h2 className="text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 uppercase tracking-wide">
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 uppercase tracking-wide">
             Where Ideas Never Settle
           </h2>
 
@@ -446,7 +446,7 @@ export default function Home() {
 
         {/* Partners */}
         <section className="partners-section my-20 w-full overflow-hidden text-center">
-          <h2 className="text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 lowercase tracking-wide">Our Best Are Working With The Best</h2>
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 lowercase tracking-wide">Our Best Are Working With The Best</h2>
 
           <div className="w-full relative py-8">
             <div className="partners-track flex items-center w-max">
@@ -493,7 +493,7 @@ export default function Home() {
         {/* Black Footer */}
         <footer className="bg-black text-white px-8 md:px-16 py-16 md:py-20 flex flex-col mt-auto w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-10 md:gap-8 lg:gap-12 w-full max-w-[1600px] mx-auto text-[11px] md:text-[13px] tracking-wide leading-relaxed">
-            
+
             {/* Col 1 */}
             <div className="lg:col-span-2 flex flex-col gap-6 text-white/80 pr-0 lg:pr-8">
               <div>
