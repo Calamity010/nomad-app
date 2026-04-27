@@ -257,7 +257,7 @@ export default function Home() {
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden xl:flex gap-6 text-[14px] lg:text-[15px] font-medium tracking-widest uppercase text-black/80">
+            <nav className="hidden min-[1375px]:flex gap-6 text-[14px] lg:text-[15px] font-medium tracking-widest uppercase text-black/80">
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">About Us</span>
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Programs</span>
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Admissions</span>
@@ -271,15 +271,15 @@ export default function Home() {
 
             {/* Mobile Hamburger Toggle */}
             <button
-              className="xl:hidden relative z-50 text-black p-2"
+              className="min-[1375px]:hidden relative z-50 text-black p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
             </button>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out flex flex-col items-center justify-center gap-8 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} xl:hidden`}>
-              <nav className="flex flex-col items-center gap-6 text-xl md:text-2xl font-black tracking-widest uppercase text-black">
+            <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out flex flex-col items-center justify-start pt-32 pb-12 overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} min-[1375px]:hidden`}>
+              <nav className="flex flex-col items-center gap-6 min-h-max text-lg md:text-2xl font-black tracking-widest uppercase text-black">
                 <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Us</span>
                 <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Programs</span>
                 <span className="cursor-pointer hover:text-[#ec008c] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Admissions</span>
@@ -294,23 +294,23 @@ export default function Home() {
           </header>
 
           {/* Hero Content Container - Centered in the remaining space */}
-          <div className="flex-1 flex flex-col items-center justify-center relative w-full">
+          <div className="flex-1 flex flex-col items-center justify-center w-full">
             {/* Central Pink Circle */}
-            <div className="hero-pink-circle absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[520px] md:h-[520px] bg-[#ec008c] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
+            <div className="hero-pink-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vmin] md:w-[60vmin] aspect-square bg-[#ec008c] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
 
             {/* Main Title - Black Text (Background layer) */}
-            <div className="absolute z-20 w-full flex items-center pointer-events-none top-[45%] -translate-y-1/2 mt-0">
-              <div className="marquee-track flex text-[16vw] md:text-[7.5vw] leading-[0.8] text-black w-max">
+            <div className="absolute z-20 w-full flex items-center pointer-events-none top-1/2 -translate-y-[46%] mt-0">
+              <div className="marquee-track flex text-[16vw] md:text-[6vw] min-[1300px]:text-[7.5vw] leading-[0.8] text-black w-max">
                 <MarqueeContent />
               </div>
             </div>
 
             {/* Main Title - White Text (Foreground layer, clipped to pink circle) */}
             <div
-              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(150px_at_45%_40%)] md:[clip-path:circle(260px_at_45%_40%)]"
+              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(40vmin_at_50%_50%)] md:[clip-path:circle(30vmin_at_50%_50%)]"
             >
-              <div className="absolute w-full flex items-center top-[45%] -translate-y-1/2 mt-0">
-                <div className="marquee-track flex text-[16vw] md:text-[7.5vw] leading-[0.8] text-white w-max">
+              <div className="absolute w-full flex items-center top-1/2 -translate-y-[46%] mt-0">
+                <div className="marquee-track flex text-[16vw] md:text-[6vw] min-[1300px]:text-[7.5vw] leading-[0.8] text-white w-max">
                   <MarqueeContent />
                 </div>
               </div>
@@ -319,7 +319,7 @@ export default function Home() {
 
           {/* Hero Bottom Right Logo */}
           <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-40 pointer-events-none">
-            <Image src="/hero-bottom-right-logo.png" width={200} height={200} alt="Hero Badge" className="w-24 h-24 md:w-40 md:h-40 object-contain" priority />
+            <Image src="/hero-bottom-right-logo.png" width={200} height={200} alt="Hero Badge" className="w-12 h-12 md:w-20 md:h-20 object-contain" priority />
           </div>
         </section>
 
@@ -334,49 +334,60 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="relative w-full flex flex-col md:flex-row md:justify-end items-center">
+          <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between gap-0 md:gap-0">
+
+            {/* Info Block Wrapper */}
+            <div className="relative w-[80%] md:w-[45%] lg:w-[40%] aspect-square z-10 shrink-0 grid order-2 md:order-1 -mt-[15%] md:mt-0 md:-mr-[5%] lg:-mr-[8%]">
+              {/* Info Block Background (Animated) */}
+              <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
+
+              {/* Info Block Text Foreground Layer (Animated) */}
+              <div className="empowering-stat-text col-start-1 row-start-1 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white z-20">
+                <div className="relative md:absolute top-[8%] md:top-[12%] flex flex-col items-center leading-[1.1] tracking-tight mb-[4%] md:mb-0">
+                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">MIAMI</div>
+                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">AD</div>
+                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">SCHOOL</div>
+                  <div className="text-[clamp(8px,1vw,12px)] font-bold tracking-widest mt-1.5">MUM | BLR</div>
+                </div>
+                <div className="stat-text-animated flex flex-col items-center justify-center">
+                  <div className="font-[family-name:var(--font-myriad)] text-[64px] md:text-[96px] lg:text-[clamp(110px,12vw,180px)] font-black tracking-tighter leading-[0.8] mt-[10%] md:mt-[20%] mb-[2%] md:mb-[4%] whitespace-nowrap flex items-center justify-center">
+                    {statsData[currentStatIndex].value.includes('+') ? (
+                      <>
+                        {statsData[currentStatIndex].value.replace('+', '')}
+                        <span className="text-[0.6em] align-middle inline-block font-bold tracking-normal ml-[2%]">+</span>
+                      </>
+                    ) : statsData[currentStatIndex].value.includes('%') ? (
+                      <span className="text-[0.8em] tracking-tight">{statsData[currentStatIndex].value}</span>
+                    ) : (
+                      statsData[currentStatIndex].value
+                    )}
+                  </div>
+                  <div className="text-[clamp(14px,2vw,32px)] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
+                    {statsData[currentStatIndex].label}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* The Image Container */}
-            <div className="empowering-image relative w-full md:w-auto flex flex-col md:block items-center">
+            <div className="empowering-image relative w-full md:w-[60%] lg:w-[60%] flex justify-center md:justify-end items-center order-1 md:order-2 z-0">
               <Image
                 src="/empowering-creative-minds.png"
                 width={1200}
                 height={720}
                 alt="Students"
-                className="empowering-inner-image w-full md:w-auto h-auto max-h-[45vh] md:max-h-[65vh] object-contain object-bottom md:object-right-bottom grayscale px-4 md:px-0"
+                className="empowering-inner-image w-full h-auto max-h-[60vh] md:max-h-[75vh] object-contain object-bottom grayscale scale-110 md:scale-125 origin-bottom"
               />
-
-              {/* Info Block Wrapper - Handles layout and overlap via Grid, NOT animated to avoid stacking context issues */}
-              <div className="mt-8 md:mt-0 relative md:absolute md:top-1/2 md:-translate-y-1/2 md:-left-[550px] lg:-left-[500px] w-[90%] md:w-[500px] h-[350px] md:h-[500px] z-10 mx-auto shrink-0 grid">
-
-                {/* Info Block Background (Animated) */}
-                <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
-
-                {/* Info Block Text Foreground Layer (Animated) */}
-                <div className="empowering-stat-text col-start-1 row-start-1 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white z-20">
-                  <div className="relative md:absolute md:top-16 flex flex-col items-center leading-[1.1] tracking-tight mb-6 md:mb-0">
-                    <div className="font-bold text-[12px] md:text-[18px]">MIAMI</div>
-                    <div className="font-bold text-[12px] md:text-[18px]">AD</div>
-                    <div className="font-bold text-[12px] md:text-[18px]">SCHOOL</div>
-                    <div className="text-[8px] md:text-[10px] font-bold tracking-widest mt-1.5">MUM | BLR</div>
-                  </div>
-                  <div className="stat-text-animated flex flex-col items-center justify-center">
-                    <div className="font-[family-name:var(--font-myriad)] text-[120px] md:text-[200px] font-black tracking-tighter leading-[0.8] mt-6 md:mt-24 lg:mt-28 mb-8 md:mb-12">{statsData[currentStatIndex].value}</div>
-                    <div className="text-[16px] md:text-[28px] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
-                      {statsData[currentStatIndex].label}
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* Visionaries Section */}
         <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-semibold text-[70px] md:text-[110px] leading-[0.9] tracking-tight shrink-0">
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-semibold text-[clamp(48px,8vw,110px)] leading-[0.9] tracking-tight shrink-0">
             Crafting<br />Tomorrow's<br />Visionaries
           </h2>
-          <div className="text-[38px] md:text-[56px] font-medium leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
+          <div className="text-[clamp(24px,4vw,56px)] font-semibold leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
             <div className="overflow-hidden pb-1"><div className="reveal-line">We cultivate fearless creative</div></div>
             <div className="overflow-hidden pb-1"><div className="reveal-line">talent that transforms the way</div></div>
             <div className="overflow-hidden pb-1"><div className="reveal-line">the world engages with brands,</div></div>
@@ -393,36 +404,36 @@ export default function Home() {
               width={1200}
               height={900}
               alt="Programs"
-              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90 scale-110 -translate-y-4 md:-translate-y-12 origin-top"
+              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90"
             />
           </div>
 
           {/* Info Block */}
-          <div className="relative w-full px-4 md:px-8 lg:px-16 flex justify-center md:justify-end items-center h-auto md:h-[90vh] mt-8 md:mt-0 py-8 md:py-0">
-            <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-8 lg:mr-16">
+          <div className="relative w-full px-4 md:px-8 lg:px-16 flex justify-center md:justify-end items-center h-auto md:h-[90vh] -mt-32 md:mt-0 py-8 md:py-0 z-10">
+            <div className="programs-panel relative w-[90vw] md:w-[45vw] lg:w-[40vw] max-w-none aspect-square flex flex-col justify-center md:mr-16 lg:mr-[8vw]">
               {/* Dark Pink Transparent Background Layer */}
-              <div className="absolute inset-0 bg-[#ec008c]/80 rounded-3xl md:rounded-full shadow-lg md:shadow-2xl"></div>
+              <div className="absolute inset-0 bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-2xl"></div>
 
               {/* Text Foreground Layer */}
-              <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center px-6 py-12 md:px-20 md:py-16 lg:px-[90px] lg:py-20 text-white h-full">
-                <h3 className="text-[36px] md:text-5xl lg:text-[52px] font-black mb-3 md:mb-5 tracking-tighter uppercase leading-[0.9] md:leading-none text-center">OUR PROGRAMS</h3>
-                <p className="text-[13px] md:text-[14px] lg:text-[16px] font-medium leading-relaxed mb-5 md:mb-6 text-white/95 text-center md:text-left px-2 md:px-0">
+              <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center items-center md:items-start px-8 py-12 md:px-[12%] text-white h-full">
+                <h3 className="text-[clamp(24px,5vw,64px)] font-black mb-3 md:mb-[3%] tracking-tighter uppercase leading-[0.9] md:leading-none text-center w-full">OUR PROGRAMS</h3>
+                <p className="text-[clamp(12px,1.4vw,20px)] font-medium leading-relaxed mb-4 md:mb-[4%] text-white/95 text-center md:text-left">
                   We cultivate creators through hands-on experiences,
                   offering real-world creative learning pathways with
                   global internships and industry-mentorship, leading to
                   a strong, employability-enhancing portfolio.
                 </p>
 
-                <div className="text-[11px] md:text-[12px] lg:text-[14px] font-bold uppercase mb-3 md:mb-3 tracking-tight text-center md:text-left">
+                <div className="text-[clamp(10px,1.2vw,16px)] font-bold uppercase mb-2 md:mb-[2%] tracking-tight text-center md:text-left w-full">
                   UNDERGRADUATE & POSTGRADUATE PROGRAMS:
                 </div>
-                <ul className="text-[13px] md:text-[16px] lg:text-[18px] font-bold space-y-2 md:space-y-2 lg:space-y-2.5 leading-tight mb-6 md:mb-6 mx-auto md:mx-0 w-max">
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-1.5 h-1.5 md:w-2 md:h-2 lg:w-3.5 lg:h-3.5 bg-white rounded-full shrink-0"></div> Creative Thinking</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-1.5 h-1.5 md:w-2 md:h-2 lg:w-3.5 lg:h-3.5 bg-white rounded-full shrink-0"></div> Advertising</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-1.5 h-1.5 md:w-2 md:h-2 lg:w-3.5 lg:h-3.5 bg-white rounded-full shrink-0"></div> Communication Design</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-1.5 h-1.5 md:w-2 md:h-2 lg:w-3.5 lg:h-3.5 bg-white rounded-full shrink-0"></div> Media and More</li>
+                <ul className="text-[clamp(13px,1.6vw,22px)] font-bold space-y-2 md:space-y-[3%] leading-tight mb-6 md:mb-[6%] mx-auto md:mx-0 w-max">
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Creative Thinking</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Advertising</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Communication Design</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Media and More</li>
                 </ul>
-                <div className="text-[12px] md:text-xs lg:text-sm font-bold uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity underline underline-offset-[4px] md:underline-offset-[6px] decoration-2 text-center">
+                <div className="text-[clamp(12px,1.3vw,18px)] font-bold uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity underline underline-offset-[4px] md:underline-offset-[6px] decoration-2 text-center w-full">
                   Explore our programs
                 </div>
               </div>
@@ -446,7 +457,7 @@ export default function Home() {
 
         {/* Partners */}
         <section className="partners-section my-20 w-full overflow-hidden text-center">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 capitalize tracking-wide">Our Best Are Working With The Best</h2>
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[36px] md:text-[52px] lg:text-[74px] mb-12 md:mb-16 capitalize tracking-wide px-6 md:px-12 lg:px-16">Our Best Are Working With The Best</h2>
 
           <div className="w-full relative py-8">
             <div className="partners-track flex items-center w-max">
@@ -460,24 +471,24 @@ export default function Home() {
 
         {/* Footer Circles */}
         <section className="footer-circles-section py-12 md:py-20 w-full flex justify-center overflow-hidden">
-          <div className="flex flex-col lg:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-8 relative w-full max-w-[1400px] mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 relative w-full max-w-[1600px] mx-auto px-4 lg:px-8">
 
             {/* Left Circle */}
-            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
-              <div className="text-[42px] md:text-[64px] font-black leading-[0.9] tracking-tighter">
+            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
+              <div className="text-[42px] md:text-[60px] font-black leading-[0.9] tracking-tighter">
                 In The<br />Heart Of<br />Mumbai
               </div>
               <div className="text-[11px] md:text-sm mt-3 md:mt-4 tracking-wide font-bold">(Upper BKC)</div>
             </div>
 
             {/* Middle Circle */}
-            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full overflow-hidden relative shrink-0 z-20 my-6 lg:my-0">
-              <Image src="/mumbai.jpg" width={450} height={450} alt="Mumbai City View" className="w-full h-full object-cover grayscale" />
+            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full overflow-hidden relative z-20">
+              <Image src="/mumbai.png" width={450} height={450} alt="Mumbai City View" className="w-full h-full object-cover grayscale" />
             </div>
 
             {/* Right Circle */}
-            <div className="footer-circle w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full bg-[#ec008c] flex flex-col justify-center text-white px-10 md:px-16 relative hover:scale-105 transition-transform duration-500 cursor-pointer shrink-0 z-10">
-              <div className="text-[12px] md:text-[17px] font-medium leading-relaxed relative text-center">
+            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col justify-center text-white px-10 md:px-14 relative hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
+              <div className="text-[12px] md:text-[16px] font-medium leading-relaxed relative text-center">
                 <span className="footer-quote absolute -top-4 md:-top-6 -left-1 md:-left-2 text-[30px] md:text-[40px] leading-none opacity-50 origin-center inline-block">❝</span>
                 Just like the bustling streets of Mumbai, NoMAD is a melting pot of diverse ideas and cultures, constantly reminding me that here, art and design are not just subjects, but powerful agents of transformation.
                 <span className="inline-block ml-1 text-[20px] md:text-[28px] leading-none translate-y-2 opacity-50">❞</span>
@@ -506,7 +517,7 @@ export default function Home() {
                 Parel East, Mumbai - 400012, Maharashtra
               </div>
               <div>
-                E: hello@nomadcollege.in
+                Email: hello@nomadcollege.in
               </div>
               <div>
                 www.nomadcollege.in
