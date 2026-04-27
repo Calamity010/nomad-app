@@ -446,7 +446,7 @@ export default function Home() {
 
         {/* Partners */}
         <section className="partners-section my-20 w-full overflow-hidden text-center">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 lowercase tracking-wide">Our Best Are Working With The Best</h2>
+          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 capitalize tracking-wide">Our Best Are Working With The Best</h2>
 
           <div className="w-full relative py-8">
             <div className="partners-track flex items-center w-max">
