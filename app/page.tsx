@@ -360,7 +360,7 @@ export default function Home() {
                     <div className="text-[8px] md:text-[10px] font-bold tracking-widest mt-1.5">MUM | BLR</div>
                   </div>
                   <div className="stat-text-animated flex flex-col items-center justify-center">
-                    <div className="text-[120px] md:text-[160px] font-black tracking-tighter leading-[0.8] mt-0 md:mt-12 mb-8 md:mb-12">{statsData[currentStatIndex].value}</div>
+                    <div className="font-[family-name:var(--font-myriad)] text-[120px] md:text-[200px] font-black tracking-tighter leading-[0.8] mt-6 md:mt-24 lg:mt-28 mb-8 md:mb-12">{statsData[currentStatIndex].value}</div>
                     <div className="text-[16px] md:text-[28px] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
                       {statsData[currentStatIndex].label}
                     </div>
@@ -372,7 +372,7 @@ export default function Home() {
         </section>
 
         {/* Visionaries Section */}
-        <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
+        <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
           <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-semibold text-[70px] md:text-[110px] leading-[0.9] tracking-tight shrink-0">
             Crafting<br />Tomorrow's<br />Visionaries
           </h2>
@@ -385,9 +385,9 @@ export default function Home() {
         </section>
 
         {/* Our Programs */}
-        <section className="programs-section relative w-full bg-[#efefef] py-12 md:py-0 overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-[auto] md:min-h-[90vh]">
+        <section className="programs-section relative w-full bg-[#efefef] py-12 md:py-0 overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-[auto] md:min-h-[70vh]">
           {/* Image Container */}
-          <div className="programs-image relative md:absolute md:left-5 lg:left-10 md:bottom-0 w-full md:w-[75%] lg:w-[65%] h-[50vh] md:h-[80vh] flex justify-center md:justify-start items-end overflow-hidden z-0">
+          <div className="programs-image relative md:absolute md:left-5 lg:left-10 md:bottom-0 w-full md:w-[75%] lg:w-[70%] h-[50vh] md:h-[85vh] flex justify-center md:justify-start items-end overflow-hidden z-0">
             <Image
               src="/programs.png"
               width={1200}
@@ -398,7 +398,7 @@ export default function Home() {
           </div>
 
           {/* Info Block */}
-          <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex justify-center md:justify-end items-center h-auto md:h-[90vh] mt-8 md:mt-0 py-8 md:py-0">
+          <div className="relative w-full px-4 md:px-8 lg:px-16 flex justify-center md:justify-end items-center h-auto md:h-[90vh] mt-8 md:mt-0 py-8 md:py-0">
             <div className="programs-panel relative w-[95%] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] z-10 flex flex-col justify-center shrink-0 md:mr-8 lg:mr-16">
               {/* Dark Pink Transparent Background Layer */}
               <div className="absolute inset-0 bg-[#ec008c]/80 rounded-3xl md:rounded-full shadow-lg md:shadow-2xl"></div>
