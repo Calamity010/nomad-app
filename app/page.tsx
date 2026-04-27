@@ -29,10 +29,20 @@ const IdeaItems = () => (
       { src: "/idea-5.png", label: "Print Advertisement" }
     ].map((item, idx) => (
       <div key={idx} className="flex flex-col items-center gap-6 px-4 md:px-8 shrink-0">
-        <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl bg-black">
+        <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl bg-black">
           <Image src={item.src} width={256} height={256} alt={item.label} className="w-full h-full object-cover" />
         </div>
         <div className="text-[#ec008c] text-sm font-black uppercase tracking-wider">{item.label}</div>
+      </div>
+    ))}
+  </>
+);
+
+const PartnerItems = () => (
+  <>
+    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+      <div key={i} className="flex items-center justify-center px-10 md:px-16 shrink-0">
+        <Image src={`/logo-${i}.png`} width={220} height={100} alt={`Partner ${i}`} className="h-14 md:h-[80px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
       </div>
     ))}
   </>
@@ -186,11 +196,13 @@ export default function Home() {
       );
 
       // 5. Partners / Logos
-      gsap.fromTo(".partner-logo",
-        { y: 30, opacity: 0 },
+      gsap.fromTo(".partners-track", 
+        { xPercent: -50 },
         {
-          y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power2.out",
-          scrollTrigger: { trigger: ".partners-section", start: "top 80%" }
+          xPercent: 0,
+          repeat: -1,
+          ease: "none",
+          duration: 50,
         }
       );
 
@@ -245,7 +257,7 @@ export default function Home() {
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden xl:flex gap-5 text-[11px] font-medium tracking-widest uppercase text-black/80">
+            <nav className="hidden xl:flex gap-6 text-[14px] lg:text-[15px] font-medium tracking-widest uppercase text-black/80">
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">About Us</span>
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Programs</span>
               <span className="cursor-pointer hover:text-[#ec008c] transition-colors">Admissions</span>
@@ -428,17 +440,16 @@ export default function Home() {
         </section>
 
         {/* Partners */}
-        <section className="partners-section px-8 my-20 w-full max-w-[1400px] mx-auto text-center">
+        <section className="partners-section my-20 w-full overflow-hidden text-center">
           <h2 className="text-[#ec008c] font-black text-4xl mb-16">Our Best Are Working With The Best</h2>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-12 gap-y-10 px-0 md:px-4 text-black font-bold">
-            <span className="partner-logo font-black text-4xl md:text-[44px] tracking-tighter opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">dentsu</span>
-            <Image src="/google.png" width={180} height={80} alt="Google" className="partner-logo h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-            <Image src="/spotify.png" width={180} height={80} alt="Spotify" className="partner-logo h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-            <Image src="/netflix.png" width={180} height={80} alt="Netflix" className="partner-logo h-12 md:h-[60px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-            <Image src="/amazon-logo.png" width={180} height={80} alt="Amazon" className="partner-logo h-10 md:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-            <Image src="/disney-logo.png" width={180} height={80} alt="Disney" className="partner-logo h-14 md:h-[72px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-            <Image src="/meta-logo.png" width={180} height={80} alt="Meta" className="partner-logo h-8 md:h-[42px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+          <div className="w-full relative py-8">
+            <div className="partners-track flex items-center w-max">
+              <PartnerItems />
+              <PartnerItems />
+              <PartnerItems />
+              <PartnerItems />
+            </div>
           </div>
         </section>
 
