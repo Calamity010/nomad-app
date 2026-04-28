@@ -3,13 +3,19 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const obviously = localFont({
-  src: "../public/Fonts/Obviously-Narrow.otf",
+  src: "../public/fonts/Obviously-Narrow.otf",
   variable: "--font-obviously",
   display: "block",
 });
 
+const obviouslyNarrowMedium = localFont({
+  src: "../public/fonts/Obviously-NarrowMedium.otf",
+  variable: "--font-obviously-narrow-medium",
+  display: "block",
+});
+
 const myriad = localFont({
-  src: "../public/MyriadPro-Regular_0.otf",
+  src: "../public/fonts/MyriadPro-Regular_0.otf",
   variable: "--font-myriad",
   display: "block",
 });
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={` ${obviously.variable} ${myriad.variable} h-full antialiased`}
+      className={` ${obviously.variable} ${obviouslyNarrowMedium.variable} ${myriad.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-obviously)]">{children}</body>
     </html>

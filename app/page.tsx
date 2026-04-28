@@ -29,7 +29,7 @@ const IdeaItems = () => (
       { src: "/idea-5.png", label: "Print Advertisement" }
     ].map((item, idx) => (
       <div key={idx} className="flex flex-col items-center gap-6 px-4 md:px-10 shrink-0">
-        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-black">
+        <div className="w-48 h-48 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-black">
           <Image src={item.src} width={320} height={320} alt={item.label} className="w-full h-full object-cover" />
         </div>
         <div className="text-[#ec008c] text-[16px] md:text-[20px] font-black uppercase tracking-wider">{item.label}</div>
@@ -105,7 +105,7 @@ export default function Home() {
       // Navbar Slide Down
       tl.fromTo(".main-header",
         { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2 },
+        { y: 0, opacity: 1, duration: 1.2, clearProps: "transform" },
         "-=3.5"
       );
 
@@ -202,7 +202,7 @@ export default function Home() {
           xPercent: 0,
           repeat: -1,
           ease: "none",
-          duration: 50,
+          duration: 80,
         }
       );
 
@@ -245,7 +245,7 @@ export default function Home() {
               width={1920}
               height={1080}
               alt="Student sitting with laptop"
-              className="hero-image absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-auto md:w-auto h-[120vh] md:h-[200vh] min-w-[150vw] md:min-w-0 max-w-none grayscale opacity-100 object-cover"
+              className="hero-image absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-auto md:w-auto h-[130vh] md:h-[140vh] min-w-[150vw] md:min-w-0 max-w-none grayscale opacity-100 object-cover"
               priority
             />
           </div>
@@ -253,7 +253,7 @@ export default function Home() {
           {/* Header - Now sticky and part of the section flow */}
           <header className="main-header sticky top-0 left-0 w-full flex items-center justify-between px-6 md:px-20 py-4 md:py-8 z-50 transition-all duration-300">
             <div className="flex items-center cursor-pointer relative z-50">
-              <Image src="/nomad-logo.png" width={200} height={60} alt="NoMAD Logo" className="h-8 md:h-12 w-auto object-contain" priority />
+              <Image src="/nomad-logo.png" width={200} height={60} alt="NoMAD Logo" className="h-11 md:h-12 w-auto object-contain" priority />
             </div>
 
             {/* Desktop Nav */}
@@ -296,10 +296,10 @@ export default function Home() {
           {/* Hero Content Container - Centered in the remaining space */}
           <div className="flex-1 flex flex-col items-center justify-center w-full">
             {/* Central Pink Circle */}
-            <div className="hero-pink-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vmin] md:w-[60vmin] aspect-square bg-[#ec008c] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
+            <div className="hero-pink-circle absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vmin] md:w-[60vmin] aspect-square bg-[#ec008c] rounded-full mix-blend-multiply z-10 pointer-events-none"></div>
 
             {/* Main Title - Black Text (Background layer) */}
-            <div className="absolute z-20 w-full flex items-center pointer-events-none top-1/2 -translate-y-[46%] mt-0">
+            <div className="absolute z-20 w-full flex items-center pointer-events-none top-[52%] -translate-y-[54%] mt-0">
               <div className="marquee-track flex text-[16vw] md:text-[6vw] min-[1300px]:text-[7.5vw] leading-[0.8] text-black w-max">
                 <MarqueeContent />
               </div>
@@ -307,9 +307,9 @@ export default function Home() {
 
             {/* Main Title - White Text (Foreground layer, clipped to pink circle) */}
             <div
-              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(40vmin_at_50%_50%)] md:[clip-path:circle(30vmin_at_50%_50%)]"
+              className="absolute z-30 inset-0 pointer-events-none flex items-center [clip-path:circle(40vmin_at_50%_52%)] md:[clip-path:circle(30vmin_at_50%_52%)]"
             >
-              <div className="absolute w-full flex items-center top-1/2 -translate-y-[46%] mt-0">
+              <div className="absolute w-full flex items-center top-[52%] -translate-y-[54%] mt-0">
                 <div className="marquee-track flex text-[16vw] md:text-[6vw] min-[1300px]:text-[7.5vw] leading-[0.8] text-white w-max">
                   <MarqueeContent />
                 </div>
@@ -324,10 +324,10 @@ export default function Home() {
         </section>
 
         {/* Empowering Section */}
-        <section className="empowering-section relative w-full flex flex-col items-center justify-center overflow-hidden pt-0 pb-12 md:pb-16">
+        <section className="empowering-section relative w-full flex flex-col items-center justify-center overflow-hidden pt-12 md:pt-20 pb-12 md:pb-16">
           {/* Centered Title */}
           <div className="w-full max-w-[1400px] px-4 md:px-8">
-            <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-tighter text-center leading-[1.2] flex flex-wrap justify-center gap-x-2 md:gap-x-4">
+            <h2 className="font-[family-name:var(--font-obviously-narrow-medium)] text-[#ec008c] font-black text-[40px] md:text-[80px] mb-8 md:mb-16 tracking-normal text-center leading-[1.2] flex flex-wrap justify-center gap-x-2 md:gap-x-4">
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Empowering</span></span>
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Creative</span></span>
               <span className="overflow-hidden block pb-2 px-1"><span className="reveal-word inline-block">Minds</span></span>
@@ -337,20 +337,20 @@ export default function Home() {
           <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between gap-0 md:gap-0">
 
             {/* Info Block Wrapper */}
-            <div className="relative w-[80%] md:w-[45%] lg:w-[40%] aspect-square z-10 shrink-0 grid order-2 md:order-1 -mt-[15%] md:mt-0 md:-mr-[5%] lg:-mr-[8%]">
+            <div className="relative w-[85%] md:w-[45%] lg:w-[40%] aspect-square z-10 shrink-0 grid order-2 md:order-1 -mt-[30%] md:mt-0 md:-mr-[5%] lg:-mr-[8%]">
               {/* Info Block Background (Animated) */}
-              <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-xl pointer-events-none"></div>
+              <div className="empowering-stat-bg col-start-1 row-start-1 w-full h-full bg-[#ec008c]/85 rounded-full pointer-events-none"></div>
 
               {/* Info Block Text Foreground Layer (Animated) */}
               <div className="empowering-stat-text col-start-1 row-start-1 flex flex-col items-center justify-center text-center py-10 px-6 md:p-8 text-white z-20">
-                <div className="relative md:absolute top-[8%] md:top-[12%] flex flex-col items-center leading-[1.1] tracking-tight mb-[4%] md:mb-0">
-                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">MIAMI</div>
-                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">AD</div>
-                  <div className="font-bold text-[clamp(12px,1.5vw,20px)]">SCHOOL</div>
-                  <div className="text-[clamp(8px,1vw,12px)] font-bold tracking-widest mt-1.5">MUM | BLR</div>
+                <div className="absolute top-[8%] md:top-[16%] flex flex-col items-center leading-[1.05] tracking-tight">
+                  <div className="font-bold text-[clamp(12px,2vw,24px)]">MIAMI</div>
+                  <div className="font-bold text-[clamp(12px,2vw,24px)]">AD</div>
+                  <div className="font-bold text-[clamp(12px,2vw,24px)]">SCHOOL</div>
+                  <div className="text-[clamp(7px,1.2vw,14px)] font-bold tracking-widest mt-1">MUM | BLR</div>
                 </div>
-                <div className="stat-text-animated flex flex-col items-center justify-center">
-                  <div className="font-[family-name:var(--font-myriad)] text-[64px] md:text-[96px] lg:text-[clamp(110px,12vw,180px)] font-black tracking-tighter leading-[0.8] mt-[10%] md:mt-[20%] mb-[2%] md:mb-[4%] whitespace-nowrap flex items-center justify-center">
+                <div className="stat-text-animated flex flex-col items-center justify-center w-full h-full pt-[10%] md:pt-[22%]">
+                  <div className="font-[family-name:var(--font-obviously-narrow-medium)] text-[120px] md:text-[130px] lg:text-[clamp(120px,11vw,180px)] font-black tracking-normal leading-[0.8] mb-[12%] md:mb-[6%] whitespace-nowrap flex items-center justify-center">
                     {statsData[currentStatIndex].value.includes('+') ? (
                       <>
                         {statsData[currentStatIndex].value.replace('+', '')}
@@ -362,7 +362,7 @@ export default function Home() {
                       statsData[currentStatIndex].value
                     )}
                   </div>
-                  <div className="text-[clamp(14px,2vw,32px)] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
+                  <div className="text-[clamp(16px,3vw,32px)] font-light leading-[1.2] tracking-tight whitespace-pre-line text-center">
                     {statsData[currentStatIndex].label}
                   </div>
                 </div>
@@ -383,57 +383,59 @@ export default function Home() {
         </section>
 
         {/* Visionaries Section */}
-        <section className="visionaries-section px-8 my-8 md:my-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-center md:text-left">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-semibold text-[clamp(48px,8vw,110px)] leading-[0.9] tracking-tight shrink-0">
-            Crafting<br />Tomorrow's<br />Visionaries
-          </h2>
-          <div className="text-[clamp(24px,4vw,56px)] font-semibold leading-[1.25] text-black/80 flex flex-col whitespace-nowrap">
-            <div className="overflow-hidden pb-1"><div className="reveal-line">We cultivate fearless creative</div></div>
-            <div className="overflow-hidden pb-1"><div className="reveal-line">talent that transforms the way</div></div>
-            <div className="overflow-hidden pb-1"><div className="reveal-line">the world engages with brands,</div></div>
-            <div className="overflow-hidden pb-1"><div className="reveal-line">stories, and ideas.</div></div>
+        <section className="visionaries-section px-4 md:px-8 mt-2 mb-8 md:mt-4 md:mb-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-center gap-6 md:gap-16 text-left">
+          <div className="flex flex-col items-start gap-4 md:contents">
+            <h2 className="font-[family-name:var(--font-obviously-narrow-medium)] text-[#ec008c] font-semibold text-[clamp(36px,6vw,84px)] leading-[1.0] tracking-wide shrink-0 pb-4">
+              Crafting <br className="hidden md:block" /> Tomorrow's <br /> Visionaries
+            </h2>
+            <div className="text-[clamp(26px,4.5vw,60px)] font-light leading-[1.0] tracking-wide text-black/80 flex flex-col whitespace-nowrap">
+              <div className="overflow-hidden pb-4 -mb-4"><div className="reveal-line">We cultivate fearless creative</div></div>
+              <div className="overflow-hidden pb-4 -mb-4"><div className="reveal-line">talent that transforms the way</div></div>
+              <div className="overflow-hidden pb-4 -mb-4"><div className="reveal-line">the world engages with brands,</div></div>
+              <div className="overflow-hidden pb-4 -mb-4"><div className="reveal-line">stories, and ideas.</div></div>
+            </div>
           </div>
         </section>
 
         {/* Our Programs */}
-        <section className="programs-section relative w-full bg-[#efefef] py-12 md:py-0 overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-[auto] md:min-h-[70vh]">
+        <section className="programs-section relative z-20 w-full bg-transparent md:bg-[#efefef] pb-0 md:py-0 overflow-visible md:overflow-hidden flex flex-col md:flex-row items-center justify-center h-[90vh] md:h-auto md:min-h-[70vh]">
           {/* Image Container */}
-          <div className="programs-image relative md:absolute md:left-5 lg:left-10 md:bottom-0 w-full md:w-[75%] lg:w-[70%] h-[50vh] md:h-[85vh] flex justify-center md:justify-start items-end overflow-hidden z-0">
+          <div className="programs-image bg-[#efefef] md:bg-transparent absolute top-0 left-0 md:bottom-0 w-full md:w-[75%] lg:w-[70%] h-[75vh] md:h-[85vh] shrink-0 flex justify-center md:justify-start items-start md:items-end overflow-hidden z-0">
             <Image
               src="/programs.png"
               width={1200}
               height={900}
               alt="Programs"
-              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-90"
+              className="w-full h-full object-cover object-top md:object-[center_top] grayscale opacity-100"
             />
           </div>
 
           {/* Info Block */}
-          <div className="relative w-full px-4 md:px-8 lg:px-16 flex justify-center md:justify-end items-center h-auto md:h-[90vh] -mt-32 md:mt-0 py-8 md:py-0 z-10">
+          <div className="absolute md:relative bottom-[8vh] md:bottom-auto w-full shrink-0 flex justify-center md:justify-end items-center h-auto md:h-[90vh] md:mt-0 pb-0 md:py-0">
             <div className="programs-panel relative w-[90vw] md:w-[45vw] lg:w-[40vw] max-w-none aspect-square flex flex-col justify-center md:mr-16 lg:mr-[8vw]">
               {/* Dark Pink Transparent Background Layer */}
-              <div className="absolute inset-0 bg-[#ec008c]/80 rounded-[40px] md:rounded-full shadow-lg md:shadow-2xl"></div>
+              <div className="absolute inset-0 bg-[#ec008c]/90 rounded-full pointer-events-none"></div>
 
               {/* Text Foreground Layer */}
-              <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center items-center md:items-start px-8 py-12 md:px-[12%] text-white h-full">
-                <h3 className="text-[clamp(24px,5vw,64px)] font-black mb-3 md:mb-[3%] tracking-tighter uppercase leading-[0.9] md:leading-none text-center w-full">OUR PROGRAMS</h3>
-                <p className="text-[clamp(12px,1.4vw,20px)] font-medium leading-relaxed mb-4 md:mb-[4%] text-white/95 text-center md:text-left">
+              <div className="relative md:absolute md:inset-0 z-10 flex flex-col justify-center items-start pl-[24%] pr-[6%] md:pl-[18%] md:pr-[10%] py-6 md:py-0 text-white h-full">
+                <h3 className="font-[family-name:var(--font-obviously-narrow-medium)] text-[26px] md:text-[48px] font-black mb-2 md:mb-[3%] tracking-normal uppercase leading-[1.0] text-left w-full">OUR PROGRAMS</h3>
+                <p className="text-[12px] md:text-[18px] font-normal leading-[1.3] md:leading-[1.4] mb-3 md:mb-[4%] text-white/95 text-left pr-[5%]">
                   We cultivate creators through hands-on experiences,
                   offering real-world creative learning pathways with
                   global internships and industry-mentorship, leading to
                   a strong, employability-enhancing portfolio.
                 </p>
 
-                <div className="text-[clamp(10px,1.2vw,16px)] font-bold uppercase mb-2 md:mb-[2%] tracking-tight text-center md:text-left w-full">
+                <div className="text-[10px] md:text-[16px] font-medium uppercase mb-2 md:mb-[2%] tracking-wide text-left w-full">
                   UNDERGRADUATE & POSTGRADUATE PROGRAMS:
                 </div>
-                <ul className="text-[clamp(13px,1.6vw,22px)] font-bold space-y-2 md:space-y-[3%] leading-tight mb-6 md:mb-[6%] mx-auto md:mx-0 w-max">
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Creative Thinking</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Advertising</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Communication Design</li>
-                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-[clamp(6px,0.8vw,14px)] aspect-square bg-white rounded-full shrink-0"></div> Media and More</li>
+                <ul className="text-[12px] md:text-[18px] font-normal space-y-1 md:space-y-[3%] leading-tight mb-4 md:mb-[6%] mx-0 w-max">
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-white rounded-full shrink-0"></div> Creative Thinking</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-white rounded-full shrink-0"></div> Advertising</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-white rounded-full shrink-0"></div> Communication Design</li>
+                  <li className="programs-list-item flex items-center gap-2 md:gap-3"><div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-white rounded-full shrink-0"></div> Media and More</li>
                 </ul>
-                <div className="text-[clamp(12px,1.3vw,18px)] font-bold uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity underline underline-offset-[4px] md:underline-offset-[6px] decoration-2 text-center w-full">
+                <div className="text-[12px] md:text-[15px] font-bold cursor-pointer hover:opacity-80 transition-opacity underline underline-offset-[4px] md:underline-offset-[6px] decoration-2 text-left w-full">
                   Explore our programs
                 </div>
               </div>
@@ -442,9 +444,9 @@ export default function Home() {
         </section>
 
         {/* Where Ideas Never Settle */}
-        <section className="relative my-20 w-full overflow-hidden text-center ideas-section">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 uppercase tracking-wide">
-            Where Ideas Never Settle
+        <section className="relative -mt-8 mb-16 md:my-20 w-full overflow-hidden text-center ideas-section">
+          <h2 className="font-[family-name:var(--font-obviously-narrow-medium)] text-[#ec008c] font-black text-[42px] md:text-[74px] mb-16 uppercase tracking-wider text-center px-6 md:px-0 leading-[1.0] md:leading-normal">
+            Where Ideas <br className="block md:hidden" /> Never Settle
           </h2>
 
           <div className="w-full relative py-8">
@@ -456,8 +458,10 @@ export default function Home() {
         </section>
 
         {/* Partners */}
-        <section className="partners-section my-20 w-full overflow-hidden text-center">
-          <h2 className="font-[family-name:var(--font-myriad)] text-[#ec008c] font-black text-[36px] md:text-[52px] lg:text-[74px] mb-12 md:mb-16 capitalize tracking-wide px-6 md:px-12 lg:px-16">Our Best Are Working With The Best</h2>
+        <section className="partners-section mt-0 mb-20 md:my-20 w-full overflow-hidden text-center">
+          <h2 className="font-[family-name:var(--font-obviously-narrow-medium)] text-[#ec008c] font-black text-[32px] md:text-[52px] lg:text-[74px] mb-12 md:mb-16 capitalize tracking-wider text-center px-6 md:px-12 lg:px-16 leading-[1.0] md:leading-normal">
+            Our Best Are <br className="block md:hidden" /> Working With The Best
+          </h2>
 
           <div className="w-full relative py-8">
             <div className="partners-track flex items-center w-max">
@@ -471,29 +475,31 @@ export default function Home() {
 
         {/* Footer Circles */}
         <section className="footer-circles-section py-12 md:py-20 w-full flex justify-center overflow-hidden">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 relative w-full max-w-[1600px] mx-auto px-4 lg:px-8">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-12 relative w-full max-w-[1600px] mx-auto px-4 lg:px-8">
 
             {/* Left Circle */}
-            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white p-8 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
-              <div className="text-[42px] md:text-[60px] font-black leading-[0.9] tracking-tighter">
+            <div className="footer-circle w-full max-w-[260px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col items-center justify-center text-center text-white p-6 md:p-10 hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
+              <div className="text-[32px] md:text-[60px] font-black leading-[0.9] tracking-tighter">
                 In The<br />Heart Of<br />Mumbai
               </div>
-              <div className="text-[11px] md:text-sm mt-3 md:mt-4 tracking-wide font-bold">(Upper BKC)</div>
+              <div className="text-[10px] md:text-sm mt-3 md:mt-4 tracking-wide font-bold">(Upper BKC)</div>
             </div>
 
             {/* Middle Circle */}
-            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full overflow-hidden relative z-20">
+            <div className="footer-circle w-full max-w-[260px] md:max-w-[400px] aspect-square rounded-full overflow-hidden relative z-20">
               <Image src="/mumbai.png" width={450} height={450} alt="Mumbai City View" className="w-full h-full object-cover grayscale" />
             </div>
 
             {/* Right Circle */}
-            <div className="footer-circle w-full max-w-[320px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col justify-center text-white px-10 md:px-14 relative hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
-              <div className="text-[12px] md:text-[16px] font-medium leading-relaxed relative text-center">
-                <span className="footer-quote absolute -top-4 md:-top-6 -left-1 md:-left-2 text-[30px] md:text-[40px] leading-none opacity-50 origin-center inline-block">❝</span>
+            <div className="footer-circle w-full max-w-[260px] md:max-w-[400px] aspect-square rounded-full bg-[#ec008c] flex flex-col justify-center text-white px-8 md:px-14 relative hover:scale-105 transition-transform duration-500 cursor-pointer z-10">
+              <div className="text-[10px] md:text-[16px] font-medium leading-relaxed relative text-center">
+                <span className="footer-quote absolute -top-4 md:-top-6 -left-1 md:-left-2 text-[24px] md:text-[40px] leading-none opacity-50 origin-center inline-block">
+                  <span className="inline-block rotate-170">❝</span>
+                </span>
                 Just like the bustling streets of Mumbai, NoMAD is a melting pot of diverse ideas and cultures, constantly reminding me that here, art and design are not just subjects, but powerful agents of transformation.
-                <span className="inline-block ml-1 text-[20px] md:text-[28px] leading-none translate-y-2 opacity-50">❞</span>
+                <span className="inline-block ml-1 text-[16px] md:text-[28px] leading-none translate-y-2 opacity-50">❞</span>
               </div>
-              <div className="text-[12px] md:text-[14px] font-bold mt-4 md:mt-6 leading-tight text-center">
+              <div className="text-[10px] md:text-[14px] font-bold mt-4 md:mt-6 leading-tight text-center">
                 - Arun, Student,<br />Communication Design
               </div>
             </div>
